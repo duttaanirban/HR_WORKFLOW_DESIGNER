@@ -56,6 +56,7 @@ export function Sidebar() {
           })}
         </div>
       </div>
+      
 
       <div className="sidebar-actions">
         <button type="button" className="secondary-button" onClick={validate}>
