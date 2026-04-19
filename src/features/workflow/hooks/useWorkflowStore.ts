@@ -74,6 +74,7 @@ type WorkflowStore = {
   deleteSelected: () => void;
   setAutomations: (automations: AutomationDefinition[]) => void;
   validate: () => void;
+  clearWorkflow: () => void;
   resetWorkflow: () => void;
   loadWorkflow: (workflow: SerializedWorkflow) => void;
   setActivePanel: (panel: "inspector" | "sandbox") => void;
@@ -178,6 +179,15 @@ export const useWorkflowStore = create<WorkflowStore>((set, get) => ({
     const { nodes, edges, automations } = get();
     const issues = validateWorkflow(nodes, edges, automations);
     set({ nodes: applyValidationToNodes(nodes, issues) });
+  },
+
+  clearWorkflow: () => {
+    set({
+      nodes: [],
+      edges: [],
+      selectedNodeId: null,
+      activePanel: "inspector",
+    });
   },
 
   resetWorkflow: () => {

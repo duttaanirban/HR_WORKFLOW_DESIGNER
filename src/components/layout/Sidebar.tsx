@@ -1,4 +1,4 @@
-import { CheckCircle2, GitPullRequest, Play, RotateCcw, UserCheck, Zap } from "lucide-react";
+import { CheckCircle2, Eraser, GitPullRequest, Play, RotateCcw, UserCheck, Zap } from "lucide-react";
 import { useWorkflowStore } from "../../features/workflow/hooks/useWorkflowStore";
 import type { WorkflowNodeType } from "../../features/workflow/types/workflow.types";
 
@@ -16,6 +16,7 @@ const paletteItems: Array<{
 ];
 
 export function Sidebar() {
+  const clearWorkflow = useWorkflowStore((state) => state.clearWorkflow);
   const resetWorkflow = useWorkflowStore((state) => state.resetWorkflow);
   const validate = useWorkflowStore((state) => state.validate);
 
@@ -59,6 +60,10 @@ export function Sidebar() {
       <div className="sidebar-actions">
         <button type="button" className="secondary-button" onClick={validate}>
           Validate
+        </button>
+        <button type="button" className="ghost-button" onClick={clearWorkflow}>
+          <Eraser size={16} aria-hidden="true" />
+          Clear
         </button>
         <button type="button" className="ghost-button" onClick={resetWorkflow}>
           <RotateCcw size={16} aria-hidden="true" />
